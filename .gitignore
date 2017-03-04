@@ -1,2 +1,7 @@
 *.pyc
 venv/
+
+# Dist kruft
+MANIFEST
+dist
+graaf.egg-info
