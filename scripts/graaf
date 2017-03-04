@@ -2,25 +2,21 @@
 
 import argparse
 
-from graaf import cmd
+from graaf import Processor
+from graaf.simple_md import SimpleMarkdown
 
-parser = argparse.ArgumentParser(prog='graaf', description='Graaf static site generator.')
-parser.add_argument('--source', '-s', metavar='SRC', type=str, default=None,
+
+parser = argparse.ArgumentParser(prog='graaf',
+                                 description='Graaf static site generator.')
+parser.add_argument('--source', '-s', metavar='SRC', default='pages/',
                     help='Root of source documents.')
-parser.add_argument('--dest', '-d', metavar='DEST', type=str, default=None,
+parser.add_argument('--dest', '-d', metavar='DEST', default='assets/',
                     help='Directory to output generated files to.')
-parser.add_argument('--templates', '-t', metavar='TMPL', type=str, default=None,
+parser.add_argument('--templates', '-t', metavar='TMPL', default='templates/',
                     help='Directory to search for templates in.')
 
 
 args = parser.parse_args()
 
-opts = {}
-if args.source:
-    opts['srcdir'] = args.source
-if args.dest:
-    opts['destdir'] = args.dest
-if args.templates:
-    opts['templatedir'] = args.templates
-
-cmd(**opts)
+cmd = Processor(args.source, args.dest, args.templates, [SimpleMarkdown()])
+cmd.run()
