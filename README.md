@@ -23,6 +23,21 @@ Then a `.html` file is created under ``assets`` by rendering the template.
 
 ## Generating
 
-From the parent dir, just run:
+Just run:
 
-    python -m graaf
+    graaf
+
+Help:
+
+    $ graaf -h
+    usage: graaf [-h] [--source SRC] [--dest DEST] [--templates TMPL]
+
+    Graaf static site generator.
+
+    optional arguments:
+    -h, --help            show this help message and exit
+    --source SRC, -s SRC  Root of source documents.
+    --dest DEST, -d DEST  Directory to output generated files to.
+    --templates TMPL, -t TMPL
+                            Directory to search for templates in.
+

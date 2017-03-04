@@ -3,7 +3,7 @@ from distutils.core import setup
 
 setup(
     name='graaf',
-    version='0.0.1',
+    version='0.1.0',
     description='Simple static site generator',
     author='Curtis Maloney',
     author_email='curtis@tinbrain.net',
@@ -14,4 +14,5 @@ setup(
         'Markdown',
         'pyyaml',
     ],
+    scripts=['scripts/graaf'],
 )
