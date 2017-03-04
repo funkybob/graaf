@@ -4,7 +4,7 @@
 - Page content in .md
 - Additional page data in .yml files
 
-## Why Graaaf?
+## Why Graaf?
 
 See [Van de Graaf](https://en.wikipedia.org/wiki/Van_de_Graaff_generator)
 
