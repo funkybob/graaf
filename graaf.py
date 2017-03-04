@@ -41,7 +41,7 @@ def cmd(srcdir='pages/', destdir='assets/', templatedir='templates/'):
 
             if ext == '.md':
                 print "\tFound: %r" % (filename,)
-                context.push(**get_yaml(os.path.join(srcdir, basename + '.yml')))
+                context.push(**get_yaml(os.path.join(root, basename + '.yml')))
                 with open(os.path.join(root, filename)) as fin:
                     context['content'] = md.reset().convert(fin.read())
                 tmpl = loader[context['template']]
