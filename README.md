@@ -20,3 +20,9 @@ For each `*.md` file found in the directory, if a matching `.yml` file is found 
 The markdown is rendered, and then added to the context as 'content'.
 Then a `.html` file is created under ``assets`` by rendering the template.
 
+
+## Generating
+
+From the parent dir, just run:
+
+    python -m graaf
