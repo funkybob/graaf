@@ -4,6 +4,7 @@ import argparse
 
 from graaf import Processor
 from graaf.simple_md import SimpleMarkdown
+from graaf.scss import SassGenerator
 
 
 parser = argparse.ArgumentParser(prog='graaf',
@@ -18,5 +19,8 @@ parser.add_argument('--templates', '-t', metavar='TMPL', default='templates/',
 
 args = parser.parse_args()
 
-cmd = Processor(args.source, args.dest, args.templates, [SimpleMarkdown()])
+cmd = Processor(args.source, args.dest, args.templates, [
+    SimpleMarkdown(),
+    SassGenerator(),
+])
 cmd.run()
