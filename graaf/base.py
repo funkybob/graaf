@@ -1,8 +1,13 @@
+import os
+
 import yaml
 
 
 class Generator(object):
-    pass
+    extensions = []
+
+    def can_process(self, filename):
+        return os.path.splitext(filename)[1] in self.extensions
 
 
 def get_yaml(src):

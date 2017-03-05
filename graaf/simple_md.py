@@ -8,8 +8,7 @@ md = markdown.Markdown()
 
 
 class SimpleMarkdown(Generator):
-    def can_process(self, filename):
-        return os.path.splitext(filename)[1] == '.md'
+    extensions = ['.md']
 
     def process(self, root, dest_dir, filename, processor):
         basename, ext = os.path.splitext(filename)
