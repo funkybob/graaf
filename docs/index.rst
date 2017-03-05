@@ -1,10 +1,6 @@
-.. Graaf documentation master file, created by
-   sphinx-quickstart on Sun Mar  5 18:28:33 2017.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
 
-Welcome to Graaf's documentation!
-=================================
+Graaf - static sites generator
+==============================
 
 .. toctree::
    :maxdepth: 2
@@ -12,6 +8,19 @@ Welcome to Graaf's documentation!
 
    api/graaf
 
+
+Why Graaf?
+----------
+
+This project is named after
+`Van de Graaf <https://en.wikipedia.org/wiki/Van_de_Graaff_generator>`_.
+
+Why did you build it?
+---------------------
+
+Recently I've built a number of sites backed by AWS API Gateway, and needed a
+way to build their static pages, but remain consistent with the templates and
+styles of the rest of the site.
 
 Indices and tables
 ==================
