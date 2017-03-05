@@ -5,6 +5,11 @@ from .base import Generator
 
 
 class VerbatimGenerator(Generator):
+    '''
+    Copy _any_ file verbatim to the destination.
+
+    Useful for static content like images and fonts.
+    '''
     def can_process(self, filename):
         return True
 

@@ -8,6 +8,12 @@ md = markdown.Markdown()
 
 
 class SimpleMarkdown(Generator):
+    '''
+    Generator for processing plain Markdown files
+
+    Will try to read {filename}.yml for additional context.
+    Will use context['template'] for the template name.
+    '''
     extensions = ['.md']
 
     def process(self, root, dest_dir, filename, processor):
