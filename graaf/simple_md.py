@@ -16,15 +16,19 @@ class SimpleMarkdown(Generator):
     '''
     extensions = ['.md']
 
-    def process(self, root, dest_dir, filename, processor):
+    def process(self, src_dir, dest_dir, filename, processor):
         basename, ext = os.path.splitext(filename)
 
-        processor.context.push(**get_yaml(os.path.join(root, basename + '.yml')))
-        with open(os.path.join(root, filename)) as fin:
-            processor.context['content'] = md.reset().convert(fin.read())
+        processor.context.push(
+            **get_yaml(os.path.join(src_dir, basename + '.yml'))
+        )
+
+        processor.context['content'] = md.reset().convert(
+            self.read_file(src_dir, filename)
+        )
         tmpl = processor.templates[processor.context['template']]
-        with open(os.path.join(dest_dir, basename + '.html'), 'w') as fout:
-            fout.write(tmpl.render(processor.context))
+        self.write_file(dest_dir, basename + '.hmtl', tmpl.render(processor.context))
+
         processor.context.pop()
 
         return True
