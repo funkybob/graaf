@@ -4,6 +4,12 @@ from stencil import TemplateLoader, Context
 
 from .base import get_yaml
 
+VERSION = (0, 2, 0)
+
+
+def get_version():
+    return '.'.join(map(str, VERSION))
+
 
 class Processor(object):
     '''
