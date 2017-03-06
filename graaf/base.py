@@ -1,3 +1,4 @@
+import io
 import os
 
 import yaml
@@ -18,6 +19,14 @@ class Generator(object):
         Called by the Processor for any file that can_process returns True for.
         '''
         raise NotImplementedError
+
+    def read_file(self, src_dir, filename):
+        with io.open(os.path.join(src_dir, filename), mode='r', encoding='utf-8') as fin:
+            return fin.read()
+
+    def write_file(self, dest_dir, filename, content):
+        with io.open(os.path.join(dest_dir, filename), mode='w', encoding='utf-8') as fout:
+            fout.write(content)
 
 
 def get_yaml(src):
