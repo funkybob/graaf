@@ -5,3 +5,6 @@ venv/
 MANIFEST
 dist
 graaf.egg-info
+
+# Docs
+docs/_build
