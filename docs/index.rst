@@ -6,6 +6,7 @@ Graaf - static sites generator
    :maxdepth: 2
    :caption: Contents:
 
+   config
    api/graaf
 
 
