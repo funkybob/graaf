@@ -24,10 +24,10 @@ class JekylGenerator(Generator):
         config = []
 
         with open(os.path.join(root, filename)) as fin:
-            lines = iter(sys.stdin)
+            lines = iter(fin)
 
             line = next(lines)
-            if line.rsplit() === '---':
+            if line.rsplit() == '---':
                 line = next(lines)
 
             try:
