@@ -1,26 +1,44 @@
 #!/usr/bin/env python2
 
 import argparse
+from importlib import import_module
 
 from graaf import Processor
-from graaf.simple_md import SimpleMarkdown
-from graaf.scss import SassGenerator
+from graaf.base import get_yaml
 
 
 parser = argparse.ArgumentParser(prog='graaf',
                                  description='Graaf static site generator.')
-parser.add_argument('--source', '-s', metavar='SRC', default='pages/',
+parser.add_argument('--source', '-s', metavar='SRC', default=None,
                     help='Root of source documents.')
-parser.add_argument('--dest', '-d', metavar='DEST', default='assets/',
+parser.add_argument('--dest', '-d', metavar='DEST', default=None,
                     help='Directory to output generated files to.')
-parser.add_argument('--templates', '-t', metavar='TMPL', default='templates/',
+parser.add_argument('--templates', '-t', metavar='TMPL', default=None,
                     help='Directory to search for templates in.')
-
+parser.add_argument('--config', '-c', metavar='CONFIG', default='graaf.yml',
+                    help='Specify config file to use.')
 
 args = parser.parse_args()
 
-cmd = Processor(args.source, args.dest, args.templates, [
-    SimpleMarkdown(),
-    SassGenerator(),
-])
-cmd.run()
+config = get_yaml(args.config)
+
+opts = {}
+opts['srcdir'] = args.source or config.setdefault('paths', {}).get('source', 'pages/')
+opts['destdir'] = args.dest or config['paths'].get('dest', 'assets/')
+opts['templatedir'] = args.templates or config['paths'].get('templates', 'templates/')
+
+if not config.setdefault('generators', []):
+    config['generators'] = [
+        {'name': 'graaf.simple_md.SimpleMarkdown'},
+        {'name': 'graaf.scss.SassGenerator'},
+    ]
+
+generators = []
+for generator in config['generators']:
+    modulename, classname = generator.pop('name').rsplit('.', 1)
+    module = import_module(modulename)
+    generators.append(getattr(module, classname)(**generator))
+
+opts['generators'] = generators
+
+Processor(**opts).run()
