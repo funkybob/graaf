@@ -10,6 +10,9 @@ from .base import Generator
 class SassGenerator(Generator):
     extensions = ['.scss', '.sass']
 
+    def can_process(self, filename):
+        return super(SassGenerator, self).can_process(filename) and not filename.startswith('_')
+
     def process(self, root, dest_dir, filename, processor):
         basename, ext = os.path.splitext(filename)
 
