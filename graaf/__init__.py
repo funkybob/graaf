@@ -4,7 +4,7 @@ from stencil import TemplateLoader, Context
 
 from .base import get_yaml
 
-VERSION = (0, 2, 0)
+VERSION = (0, 2, 2)
 
 
 def get_version():
