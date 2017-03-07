@@ -3,7 +3,7 @@ from distutils.core import setup
 
 setup(
     name='graaf',
-    version='0.2.0',
+    version='0.2.1',
     description='Simple static site generator',
     author='Curtis Maloney',
     author_email='curtis@tinbrain.net',
