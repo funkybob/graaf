@@ -13,7 +13,7 @@ setup(
         'stencil-template',
         'Markdown',
         'pyyaml',
-        'sass',
+        'pyScss',
     ],
     scripts=['scripts/graaf'],
 )
