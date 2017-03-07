@@ -28,6 +28,25 @@ class Generator(object):
         with io.open(os.path.join(dest_dir, filename), mode='w', encoding='utf-8') as fout:
             fout.write(content)
 
+    def start(self, processor):
+        '''
+        Hook to alow Generators to react to start of processing.
+        '''
+        pass
+
+    def enter_dir(self, src_dir, dirs, files):
+        '''
+        Hook to allow Generators to react to start of processing a dir.
+        '''
+        pass
+
+    def leave_dir(self, src_dir, dirs, files):
+        '''
+        Hook to allow Generators to react to end of processing a dir.
+        '''
+        pass
+
+
 
 def get_yaml(src):
     '''

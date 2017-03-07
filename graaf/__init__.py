@@ -29,6 +29,9 @@ class Processor(object):
 
         self.context = Context({})
 
+        for generator in self.generators:
+            generator.start(self)
+
         for root, dirs, files in os.walk(self.srcdir):
             print "Scanning: %r (%d files)" % (root, len(files))
             dest_root = os.path.join(self.destdir, root[len(self.srcdir):])
@@ -36,6 +39,9 @@ class Processor(object):
                 os.makedirs(dest_root)
             except OSError:
                 pass
+
+            for generator in self.generators:
+                generator.enter_dir(root, dirs, files)
 
             self.context.push(**get_yaml(os.path.join(root, '_.yml')))
 
@@ -50,6 +56,12 @@ class Processor(object):
                     # print "\tNo generator for: %r" % filename
 
             self.context.pop()
+
+            for generator in self.generators:
+                generator.leave_dir(root, dirs, files)
+
+        for generator in self.generators:
+            generator.finish(self)
 
     def render(self, template_name, extra_context):
         '''
