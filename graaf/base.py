@@ -47,7 +47,6 @@ class Generator(object):
         pass
 
 
-
 def get_yaml(src):
     '''
     Try to read a YAML document from the provided file.
