@@ -27,21 +27,27 @@ class JekylGenerator(Generator):
             lines = iter(fin)
 
             line = next(lines)
-            if line.rsplit() == '---':
+            if line.rstrip() == '---':
                 line = next(lines)
 
             try:
-                while line.rsplit() != '---':
+                while line.rstrip() != '---':
                     config.append(line)
                     line = next(lines)
             except StopIteration:
+                print "Failed to find end of document: %r" % line
                 return False
 
             config = yaml.load(''.join(config))
             content = ''.join(lines)
 
-        config['content'] = markdown.reset().convert(content)
+        config['content'] = md.reset().convert(content)
+
+        if 'layout' in config:
+            template_name = 'jekyl/%s.html' % (config['layout'],)
+        else:
+            template_name = config['template']
         with open(os.path.join(dest_dir, basename + '.html'), 'w') as fout:
-            fout.write(processor.render('jekyl/%s.html' % config['layout'], config))
+            fout.write(processor.render(template_name, config))
 
         return True
