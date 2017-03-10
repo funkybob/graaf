@@ -4,8 +4,7 @@ import argparse
 from importlib import import_module
 import sys
 
-from graaf import Processor
-from graaf.base import get_yaml
+from graaf.base import Processor, get_yaml
 
 
 parser = argparse.ArgumentParser(prog='graaf',
