@@ -70,7 +70,7 @@ class Processor(object):
         context.
         '''
         self.context.push(**extra_context)
-        content = self.templates[template_name](self.context)
+        content = self.templates[template_name].render(self.context)
         self.context.pop()
         return content
 
