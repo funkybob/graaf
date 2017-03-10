@@ -117,6 +117,12 @@ class Generator(object):
         '''
         pass
 
+    def finish(self, processor):
+        '''
+        Hook to allow Generators to react to end of processing.
+        '''
+        pass
+
 
 def get_yaml(src):
     '''
