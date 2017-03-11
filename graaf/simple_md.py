@@ -1,6 +1,7 @@
 import os
 
 import markdown
+from stencil import Template
 
 from .base import Generator, get_yaml
 
@@ -23,9 +24,9 @@ class SimpleMarkdown(Generator):
             **get_yaml(os.path.join(src_dir, basename + '.yml'))
         )
 
-        processor.context['content'] = md.reset().convert(
-            self.read_file(src_dir, filename)
-        )
+        content = md.reset().convert(self.read_file(src_dir, filename))
+        content = Template(content).render(processor.context)
+        processor.context['content'] = md.reset().convert(content)
         tmpl = processor.templates[processor.context['template']]
         self.write_file(dest_dir, basename + '.hmtl', tmpl.render(processor.context))
 

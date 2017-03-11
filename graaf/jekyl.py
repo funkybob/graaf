@@ -1,7 +1,9 @@
+import io
 import os
 
 import yaml
 import markdown
+from stencil import Template
 
 from .base import Generator
 
@@ -23,7 +25,7 @@ class JekylGenerator(Generator):
 
         config = []
 
-        with open(os.path.join(root, filename)) as fin:
+        with io.open(os.path.join(root, filename), encoding='utf-8') as fin:
             lines = iter(fin)
 
             line = next(lines)
@@ -41,13 +43,13 @@ class JekylGenerator(Generator):
             config = yaml.load(''.join(config))
             content = ''.join(lines)
 
-        config['content'] = md.reset().convert(content)
+        content = md.reset().convert(content)
+        context['content'] = Template(content).render(process.context)
 
         if 'layout' in config:
             template_name = 'jekyl/%s.html' % (config['layout'],)
         else:
             template_name = config['template']
-        with open(os.path.join(dest_dir, basename + '.html'), 'w') as fout:
-            fout.write(processor.render(template_name, config))
+        self.write_file(dest_dir, basename + '.html', processor.render(template_name, config))
 
         return True
