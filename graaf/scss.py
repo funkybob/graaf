@@ -3,6 +3,7 @@ from __future__ import absolute_import
 import os
 
 from scss.compiler import Compiler
+from stencil import Template
 
 from .base import Generator
 
@@ -29,6 +30,7 @@ class SassGenerator(Generator):
             include_paths.append(processor.srcdir)
 
         scss_source = self.read_file(src_dir, filename)
+        scss_source = Template(scss_source).render(processor.context)
         compiler = Compiler(search_path=include_paths)
         content = compiler.compile_string(scss_source)
         self.write_file(dest_dir, basename + '.css', content)
