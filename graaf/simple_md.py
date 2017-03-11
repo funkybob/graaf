@@ -13,6 +13,7 @@ class SimpleMarkdown(Generator):
     Generator for processing plain Markdown files
 
     Will try to read {filename}.yml for additional context.
+    Processes content as a Template first, allowing variables, etc.
     Will use context['template'] for the template name.
     '''
     extensions = ['.md']
