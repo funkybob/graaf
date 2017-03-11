@@ -21,7 +21,7 @@ class JekylGenerator(Generator):
     The MD content is processed as a Template first, allowing variables, etc.
 
     If a `layout` is specified in the `Front Matter`, the template
-    `jekyl/{layout}.html` will be used.
+    `jekyll/{layout}.html` will be used.
     Otherwise a `template` value must be specified in the `Front Matter`.
     '''
     extensions = ['.md', '.markdown']
@@ -53,7 +53,7 @@ class JekylGenerator(Generator):
         processor.context['content'] = Template(content).render(processor.context)
 
         if 'layout' in config:
-            template_name = 'jekyl/%s.html' % (config['layout'],)
+            template_name = 'jekyll/%s.html' % (config['layout'],)
         else:
             template_name = config['template']
         self.write_file(dest_dir, basename + '.html', processor.render(template_name, config))
