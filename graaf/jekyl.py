@@ -50,7 +50,7 @@ class JekylGenerator(Generator):
             content = ''.join(lines)
 
         content = md.reset().convert(content)
-        context['content'] = Template(content).render(process.context)
+        processor.context['content'] = Template(content).render(processor.context)
 
         if 'layout' in config:
             template_name = 'jekyl/%s.html' % (config['layout'],)
