@@ -48,8 +48,8 @@ class SassGenerator(Generator):
 
         scss_source = self.read_file(src_dir, filename)
         scss_source = Template(scss_source).render(processor.context)
-        compiler = Compiler(search_path=include_paths)
-        content = compiler.compile_string(scss_source, output_style='compressed' if self.minify else 'nested')
+        compiler = Compiler(search_path=include_paths, output_style='compressed' if self.minify else 'nested')
+        content = compiler.compile_string(scss_source)
         self.write_file(dest_dir, basename + '.css', content)
 
         return True
