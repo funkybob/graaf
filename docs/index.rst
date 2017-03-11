@@ -30,16 +30,16 @@ How it works
 1. Put your source content in a directory. By default this is called `pages`.
 
 2. You create a target directory to generate the content in. By default this is
-called `assets`.
+   called `assets`.
 
 3. Write templates for your content. By default these go in a directory called
-`templates`.
+   `templates`.
 
 4. You run `graaf`
 
-It will find every file in your sirce directory, and check if any of its
-configured Generators will work on it.  If so, they will be invoked, and
-(typically) generate an output file.
+   It will find every file in your sirce directory, and check if any of its
+   configured Generators will work on it.  If so, they will be invoked, and
+   (typically) generate an output file.
 
 5. PROFIT!
 
