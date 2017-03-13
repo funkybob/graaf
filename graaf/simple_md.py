@@ -29,7 +29,7 @@ class SimpleMarkdown(Generator):
         content = Template(content).render(processor.context)
         processor.context['content'] = md.reset().convert(content)
         tmpl = processor.templates[processor.context['template']]
-        self.write_file(dest_dir, basename + '.hmtl', tmpl.render(processor.context))
+        self.write_file(dest_dir, basename + '.html', tmpl.render(processor.context))
 
         processor.context.pop()
 
