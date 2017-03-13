@@ -11,7 +11,7 @@ from .base import Generator
 md = markdown.Markdown()
 
 
-class JekylGenerator(Generator):
+class JekyllGenerator(Generator):
     '''
     Generator to support Jekyl files.
 
@@ -34,16 +34,15 @@ class JekylGenerator(Generator):
         with io.open(os.path.join(root, filename), encoding='utf-8') as fin:
             lines = iter(fin)
 
-            line = next(lines)
-            if line.rstrip() == '---':
-                line = next(lines)
-
             try:
+                line = next(lines)
+                if line.rstrip() == '---':
+                    line = next(lines)
+
                 while line.rstrip() != '---':
                     config.append(line)
                     line = next(lines)
             except StopIteration:
-                print "Failed to find end of document: %r" % line
                 return False
 
             config = yaml.load(''.join(config))
