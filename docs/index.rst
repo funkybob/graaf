@@ -37,8 +37,8 @@ How it works
 
 4. You run `graaf`
 
-   It will find every file in your sirce directory, and check if any of its
-   configured Generators will work on it.  If so, they will be invoked, and
+   It will find every file in your source directory, and check if any of its
+   configured Generators will work on it. If so, they will be invoked, and
    (typically) generate an output file.
 
 5. PROFIT!
@@ -68,7 +68,7 @@ generators
 This is a list of generator classes to use, in order.
 
 Each item in the list is a map with at least the import name of a Generator
-class.  It may also include arguments to pass to the Generator for
+class. It may also include arguments to pass to the Generator for
 configuration.
 
 .. code-block:: yaml
